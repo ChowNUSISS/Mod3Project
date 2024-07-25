@@ -37,8 +37,15 @@ function NewsTable( {newsData, newsHeaderTitle} ) {
                 <td key={i}>
                   <p ID={`${styles.newsTitle}`}>{news.title}</p>
                   <p ID={`${styles.newsSummary}`}>{news.summary}</p>
+                  <p>
+                    <b>Sentiment Score: </b>
+                    {news.overall_sentiment_score.toFixed(3)}
+                  </p>
                   <p className={`${styles.newsSource}`}>
-                    <b>Source: </b>{news.source}
+                    <b>Source: </b>
+                    <a href={news.url} target="_blank" rel="noopener noreferrer"> 
+                      {news.source}
+                    </a>
                   </p>
                   <p className={`${styles.newsDate}`}>
                     <b>Published on: </b>
@@ -52,8 +59,15 @@ function NewsTable( {newsData, newsHeaderTitle} ) {
                   <td key={i+3}>
                     <p ID={`${styles.newsTitle}`}>{news.title}</p>
                     <p ID={`${styles.newsSummary}`}>{news.summary}</p>
+                    <p>
+                      <b>Sentiment Score: </b>
+                      {news.overall_sentiment_score.toFixed(3)}
+                    </p>
                     <p className={`${styles.newsSource}`}>
-                      <b>Source: </b>{news.source}
+                      <b>Source: </b>
+                      <a href={news.url} target="_blank" rel="noopener noreferrer"> 
+                        {news.source}
+                      </a>
                     </p>
                     <p className={`${styles.newsDate}`}>
                       <b>Published on: </b>
@@ -67,8 +81,15 @@ function NewsTable( {newsData, newsHeaderTitle} ) {
                   <td key={i+3}>
                     <p ID={`${styles.newsTitle}`}>{news.title}</p>
                     <p ID={`${styles.newsSummary}`}>{news.summary}</p>
+                    <p>
+                      <b>Sentiment Score: </b>
+                      {news.overall_sentiment_score.toFixed(3)}
+                    </p>
                     <p className={`${styles.newsSource}`}>
-                      <b>Source: </b>{news.source}
+                      <b>Source: </b>
+                      <a href={news.url} target="_blank" rel="noopener noreferrer"> 
+                        {news.source}
+                      </a>
                     </p>
                     <p className={`${styles.newsDate}`}>
                       <b>Published on: </b>

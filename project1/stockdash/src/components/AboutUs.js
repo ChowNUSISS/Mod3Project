@@ -17,6 +17,7 @@ const AboutUs = () => {
   const [newsIsLoading, setNewsIsLoading] = useState(true);
   const [newsHeaderTitle, setNewsHeaderTitle] = useState("");
   const [sentimentScore, setSentimentScore] = useState(0);
+  const [showSentimentScore, setShowSentimentScore] = useState(false);
 
   const newsResponse = async () => {
     setNewsHeaderTitle("General News");
@@ -44,29 +45,34 @@ const AboutUs = () => {
     setNewsHeaderTitle(`${stockName} News`);
     try {
       setNewsIsLoading(true);
-      const response = await getNews.get(`/query?function=NEWS_SENTIMENT&tickers=${stockName}&apikey=Y3TOA81O8IORQRMM`);
+      const response = await getNews.get(`/query?function=NEWS_SENTIMENT&tickers=${stockName}&limit=1000&apikey=Y3TOA81O8IORQRMM`);
       // const response = await getNews.get("/query");
       // const response = await getNews.get("/query");
       if (response.data && response.data.feed) {
-        console.log("✔ News:", response.data.feed);
-        setNewsData(response.data.feed);
-      } else {
-        console.log("❌ News: No feed data found, using dummy news");
-        window.alert("API Request failed, no pre-loaded data");
-        setNewsData(aaplNews);
-      }
-      setSentimentScore(()=>{
+        console.log("✔ News:", response.data.feed.slice(0,10));
+        setNewsData(response.data.feed.slice(0,10));
+        setShowSentimentScore(true);
+        setSentimentScore(()=>{
         let score = 0;
-        newsData.forEach((news) => {
-          const aaplSentiment = news.ticker_sentiment.find(sentiment => sentiment.ticker === "AAPL");
+        response.data.feed.slice(0,10).forEach((news) => {
+          const aaplSentiment = news.ticker_sentiment.find(sentiment => sentiment.ticker === `${stockName}`);
           if (aaplSentiment) {
             // Convert ticker_sentiment_score to a number and add to score
             console.log("score", score);
             score = score + parseFloat(aaplSentiment.ticker_sentiment_score);
           }
         });
+        console.log("News Feed Length: ", response.data.feed.slice(0,10).length)
+        score = score/response.data.feed.slice(0,10).length;
+        console.log("News Sentiment Score: ", score)
         return score;
-      });
+      })
+      } else {
+        console.log("❌ News: No feed data found, using dummy news");
+        window.alert("API Request failed, no pre-loaded data");
+        setNewsData(aaplNews);
+      }
+      ;
     } catch (error) {
       console.error("🚨 error:", error.message);
       setNewsData(aaplNews);
@@ -86,40 +92,57 @@ const AboutUs = () => {
       setNewsIsLoading(false);
     }
   };
-  // const newsEcnResponse = async () => {
-  //   setNewsHeaderTitle("Macro Economy News");
-  //   try {
-  //     setNewsIsLoading(true);
-  //     const response = await getNews.get("/query?function=NEWS_SENTIMENT&topics=economy_macro&apikey=Y3TOA81O8IORQRMM");
-  //     // const response = await getNews.get("/query");
-  //     if (response.data && response.data.feed) {
-  //       console.log("✔ News:", response.data.feed);
-  //       setNewsData(response.data.feed);
-  //     } else {
-  //       console.log("❌ News: No feed data found, using dummy news");
-  //       window.alert("API Request failed, no pre-loaded data");
-  //       setNewsData(dummyNews);
-  //     }
-  //   } catch (error) {
-  //     console.error("🚨 error:", error.message);
-  //     setNewsData(dummyNews);
-  //   } finally {
-  //     setNewsIsLoading(false);
-  //   }
-  // };
-  // const getdummyNews = () => {
-  //   console.log('Button clicked');
-  //   setNewsData(dummyNews);
-  //   console.log('Object from parent component: ', newsData);
-  // }
+  const newsEcnResponse = async () => {
+    setNewsHeaderTitle("Macro Economy News");
+    try {
+      setNewsIsLoading(true);
+      const response = await getNews.get("/query?function=NEWS_SENTIMENT&topics=economy_macro&apikey=Y3TOA81O8IORQRMM");
+      // const response = await getNews.get("/query");
+      if (response.data && response.data.feed) {
+        console.log("✔ News:", response.data.feed);
+        setNewsData(response.data.feed);
+      } else {
+        console.log("❌ News: No feed data found, using dummy news");
+        window.alert("API Request failed, no pre-loaded data");
+        setNewsData(dummyNews);
+      }
+    } catch (error) {
+      console.error("🚨 error:", error.message);
+      setNewsData(dummyNews);
+    } finally {
+      setNewsIsLoading(false);
+    }
+  };
+  const newsTechResponse = async () => {
+    setNewsHeaderTitle("Macro Economy News");
+    try {
+      setNewsIsLoading(true);
+      const response = await getNews.get("/query?function=NEWS_SENTIMENT&topics=technology&apikey=Y3TOA81O8IORQRMM");
+      // const response = await getNews.get("/query");
+      if (response.data && response.data.feed) {
+        console.log("✔ News:", response.data.feed);
+        setNewsData(response.data.feed);
+      } else {
+        console.log("❌ News: No feed data found, using dummy news");
+        window.alert("API Request failed, no pre-loaded data");
+        setNewsData(dummyNews);
+      }
+    } catch (error) {
+      console.error("🚨 error:", error.message);
+      setNewsData(dummyNews);
+    } finally {
+      setNewsIsLoading(false);
+    }
+  };
+
   return (
     <div>
       <div className={styles.newsHeader}>News</div>
       <p className={styles.newsSubheader}>Get the latest news on your bookmarked stocks here!</p>
       <button className={styles.button} onClick={newsResponse}>General News</button>
-      <button className={styles.button} >Financial News</button>
-      <InputStock stockName={stockName} setStockName={setStockName} newsFinResponse={newsFinResponse} sentimentScore={sentimentScore}/>
-      {/* <button className={styles.button} onClick={newsEcnResponse}>Macro Economy News</button> */}
+      <button className={styles.button} onClick={newsEcnResponse}>Economy News</button>
+      <button className={styles.button} onClick={newsTechResponse}>Tech News</button>
+      <InputStock stockName={stockName} setStockName={setStockName} newsFinResponse={newsFinResponse} sentimentScore={sentimentScore} showSentimentScore={showSentimentScore}/>
       {!newsIsLoading && <NewsTable newsData={newsData} newsHeaderTitle={newsHeaderTitle}/>}
     </div>
   )};

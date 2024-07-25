@@ -1,7 +1,7 @@
 // inputStock.js
 import styles from "./inputStock.module.css";
 
-function InputStock({stockName, setStockName, newsFinResponse, sentimentScore}) {
+function InputStock({stockName, setStockName, newsFinResponse, sentimentScore, showSentimentScore}) {
     const handleChange = (event) => {
         setStockName(event.target.value.toUpperCase());
     };
@@ -13,9 +13,17 @@ function InputStock({stockName, setStockName, newsFinResponse, sentimentScore}) 
             <button onClick={newsFinResponse}>
                 Search
             </button>
-            <div className={styles.scoreBox}>
-                ↗️ {(sentimentScore/50).toFixed(3)}
-            </div>
+            <br />
+            {showSentimentScore && 
+            <div> 
+                <b>Overall Score: </b>
+                <sub 
+                className={styles.scoreBox}
+                >
+                    {/* {(sentimentScore > 0 && sentimentScore < 0.35) ? '➡️' : '↗️'}  */}
+                    {(sentimentScore).toFixed(3)}
+                </sub>
+            </div>}
 
         </div>
     );

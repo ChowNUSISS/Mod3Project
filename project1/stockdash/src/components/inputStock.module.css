@@ -1,17 +1,18 @@
 .inputLabel {
-    margin-left: 220px;
-    padding-right: 10px;
+    /* margin-left: 220px;
+    padding-right: 10px; */
+
 }
 
 .inputBox {
     max-width: 100px;
-
+    margin-top: 20px;
 }
 
 .scoreBox {
     display: inline-block; /* Ensure it displays inline */
     padding: 10px 20px;
-    margin: 20px 50px;
+    margin: 20px 5px;
     background-color: #eeeeee;
     color: rgb(0, 0, 0);
     border: 2px solid #000000;
