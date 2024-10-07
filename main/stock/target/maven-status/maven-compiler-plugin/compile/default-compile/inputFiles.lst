@@ -1,0 +1,17 @@
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/Customer.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/CustomerController.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/CustomerNotFoundException.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/CustomerRepository.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/CustomerService.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/CustomerServiceImpl.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/CustomerServiceWithLoggingImpl.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/DataLoader.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/Interaction.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/InteractionController.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/InteractionRepository.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/InteractionService.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/InteractionServiceImpl.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/Product.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/ProductController.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/ProductNotFoundException.java
+/Users/danielgoh/ProjectsSU/test/simple-crm-3.12-starter/src/main/java/sg/edu/ntu/simple_crm/SimpleCrmApplication.java
